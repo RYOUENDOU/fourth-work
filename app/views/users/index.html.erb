@@ -1,0 +1,25 @@
+<style>
+.flex-container {
+ width: 100%;
+ margin: 0 auto;	
+  }
+
+.user_lists {
+	float: left;
+	width: 20%;
+	text-align: center;
+}	
+
+
+</style>
+<h1>ユーザー</h1>
+<div class="flex-container">
+		<% @users.each do |user| %>
+		<div class="user_lists">
+	    <%= link_to user.nickname, user_path(user.id) %>
+		<br>
+		<%= image_tag user.image, :size => '100x100' %>
+		<br></div>
+		<% end %>
+	
+</div>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AgriSummit</title>
+    <%= csrf_meta_tags %>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      	 <% if user_signed_in? %>
+         <i class="fa fa-pencil-square-o" aria-hidden="true"><%= link_to '新規投稿', new_post_path %></i>
+        <i class="fa fa-home" aria-hidden="true"><%= link_to 'ホーム', posts_path %></i>
+        <i class="fa fa-sign-out" aria-hidden="true"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></i>
+        <i class="fa fa-cog" aria-hidden="true"><%= link_to '設定とプライバシー', edit_user_registration_path %></i>
+        <i class="fa fa-users" aria-hidden="true"><%= link_to '他のユーザー', users_path %></i>
+        <i class="fa fa-user" aria-hidden="true"><%= link_to 'マイページ', user_path(current_user) %></i>
+         ログイン： <%= current_user.email %>
+        
+
+      <% else %>
+        <%= link_to "新規登録", new_user_registration_path %> |
+        <%= link_to "ログイン", new_user_session_path %>
+      <% end %>
+    </div>  
+        <%= yield %>
+  </body>
+</html>

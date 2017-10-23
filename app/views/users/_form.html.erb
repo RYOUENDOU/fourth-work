@@ -1,0 +1,25 @@
+<div class="user-image">
+  <%= form_for(user) do |f|%>
+  	<%= f.label :nickname, "ニックネーム" %>
+    <%= f.text_field :nickname %>
+
+    <%= f.label :image, "ユーザー写真" %>
+    
+    <% if user.image? %>
+        <%= image_tag user.image.url%><br>
+        画像を変更する <br>    
+        <%= f.file_field :image %> 
+    <% else %>
+        画像を追加する 
+        <%= f.file_field :image %> 
+    <% end %>
+          
+	
+    <%= f.label :profile, "紹介文" %>
+    <%= f.text_field :profile %> <br>
+	
+	<!-- <div class="actions"> -->
+	    <%= f.submit class: "button"%>
+	<!-- </div> -->
+<% end %>
+</div>

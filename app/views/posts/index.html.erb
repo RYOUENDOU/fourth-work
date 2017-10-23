@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<div class="logo">
+  <h1>農業日誌</h1>
+  <p>暮らしに役立つ農業知識</p>
+</div>                                
+
+  <div class="profile box1"> 
+  <p>ようこそ <%= current_user.nickname %>さん</p>
+  <p class = "profile-image"><%= image_tag current_user.image, :size =>'300x300' %></p>
+  <p></p>プロフィール<br><%= current_user.profile%></p>
+  </div>
+  <div class="box2">
+    <table border="1"  class="list">
+      <thead>
+        <tr>
+          <th>ユーザー名</th>
+          <th>タイトル</th>
+          <th class="contents">農業生活</th>
+          <th>画像</th>
+          <th>行動日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.reverse_each do |post| %>
+          <tr>
+            <td><%= post.user.try(:nickname) %><br><%= image_tag post.user.image, :size =>'40x40' %></td>
+            <td><%= link_to post.title, post_path(post) %></td>
+            <td class="contents"><%= post.body %></td>
+          <% if post.image? %>
+        　  <td><%= image_tag post.image.url%></td>
+        　<% else %>
+        　  <td> no image </td>
+        　<% end %>
+            <td><%= post.created_at.strftime("%Y年 %m月 %d日") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+<br>
+

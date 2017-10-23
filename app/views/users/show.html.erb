@@ -1,0 +1,32 @@
+<div class="my_page">
+    <p>
+      <strong>ニックネーム:</strong>
+      <%= @user.name %>
+    </p>
+
+    <p>
+      <strong>イメージ</strong><br>
+      <%= image_tag @user.image %>
+    </p>
+
+    <p>
+      <strong>プロフィール:</strong>
+      <%= @user.profile %>
+    </p>
+    <div class="text">投稿件数：<%= @user.posts.count %>
+      <% @user.posts.each do |post| %>
+            <h4 class="user">
+                <div class="user-name">
+                  <%= link_to post.user.name, user_path(post.user) %>    
+                </div>
+                <div class="user-body">
+                  <%= post.body %>    
+                </div>
+            </h4>
+      <% end %>
+       <% if current_user.id == @user.id %>
+            <%= link_to 'プロフィール編集', edit_user_path %>   
+       <% else %>
+       <% end %>
+    </div>
+</div>
